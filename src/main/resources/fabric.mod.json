@@ -1,0 +1,20 @@
+{
+    "schemaVersion": 1,
+    "id": "chunk_indicators",
+    "version": "${version}",
+    "name": "Chunk Indicators",
+    "description": "Marks chunks at Y 67 when a player or a Skeleton Spawner is found underground (Y -1 to -66) within 32 chunks.",
+    "license": "MIT",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "dev.chunkindicators.ChunkIndicatorsMod"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.19.2",
+        "minecraft": "~26.1.2",
+        "java": ">=25",
+        "fabric-api": "*"
+    }
+}

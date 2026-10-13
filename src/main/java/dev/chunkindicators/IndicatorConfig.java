@@ -16,7 +16,7 @@ public final class IndicatorConfig {
 
     public boolean enabled = true;
     public int radiusChunks = 32;
-    public String observerTag = "chunkindicator";
+    public String observerName = "";
     public int scanIntervalTicks = 20;
     public int spawnerCacheTicks = 600;
     public float indicatorScale = 3.0f;

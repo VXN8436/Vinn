@@ -42,7 +42,8 @@ public final class IndicatorScanner {
 
         List<ServerPlayer> everyone = server.getPlayerList().getPlayers();
         for (ServerPlayer observer : everyone) {
-            if (!cfg.observerTag.isEmpty() && !observer.getTags().contains(cfg.observerTag)) {
+            if (!cfg.observerName.isEmpty()
+                    && !observer.getName().getString().equalsIgnoreCase(cfg.observerName)) {
                 continue;
             }
             scanFor(observer, everyone, cfg, time);
@@ -58,7 +59,7 @@ public final class IndicatorScanner {
         ChunkPos center = observer.chunkPosition();
         int r = cfg.radiusChunks;
 
-        Set<Long> playerChunks = new HashSet<>();
+        Set<ChunkPos> playerChunks = new HashSet<>();
         for (ServerPlayer other : everyone) {
             if (other == observer || other.level() != level) {
                 continue;
@@ -69,11 +70,11 @@ public final class IndicatorScanner {
             }
             ChunkPos cp = other.chunkPosition();
             if (Math.abs(cp.x() - center.x()) <= r && Math.abs(cp.z() - center.z()) <= r) {
-                playerChunks.add(cp.pack());
+                playerChunks.add(cp);
             }
         }
-        for (long packed : playerChunks) {
-            drawIndicator(level, observer, new ChunkPos(packed), VIOLET, cfg);
+        for (ChunkPos cp : playerChunks) {
+            drawIndicator(level, observer, cp, VIOLET, cfg);
         }
 
         for (int cx = center.x() - r; cx <= center.x() + r; cx++) {
@@ -127,4 +128,4 @@ public final class IndicatorScanner {
         level.sendParticles(observer, new DustParticleOptions(rgb, cfg.indicatorScale),
             true, true, x, y, z, 12, 0.35, 0.35, 0.35, 0.0);
     }
-  }
+}
